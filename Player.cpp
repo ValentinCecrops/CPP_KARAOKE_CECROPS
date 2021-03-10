@@ -28,12 +28,24 @@ Player::Player() : _name("Défaut") {}
 void Player::showAverageScore()
 {
     int averageScore = 0;
+    int songsPlayed = 0;
     for(int i = 0 ; i < 5 ; i++)
     {
-        averageScore += _songScore[i];
+        if(_songScore[i] > 0)
+        {
+            averageScore += _songScore[i];
+            songsPlayed += 1;
+        }
     }
-    averageScore /= 5;
-    std::cout << "Score moyen : " << averageScore << std::endl;
+    if(songsPlayed = 0)
+    {
+        std::cout << "Vous n'avez pas encore de score" << std::endl;
+    }
+    else
+    {
+        averageScore /= songsPlayed;
+        std::cout << "Score moyen : " << averageScore << std::endl;
+    }
 }
 
 void Player::showTotalScore()
@@ -56,9 +68,9 @@ void Player::showHighScore()
             highScore = _songScore[i];
         }
     }
-    if(highScore = 0)
+    if(highScore == 0)
     {
-        std::cout << "Vous n'avez pas encore de score";
+        std::cout << "Vous n'avez pas encore de score" << std::endl;
     }
     else
     {
@@ -76,9 +88,9 @@ void Player::showLowScore()
             lowScore = _songScore[i];
         }
     }
-    if(lowScore = 101)
+    if(lowScore == 101)
     {
-        std::cout << "Vous n'avez pas encore de score";
+        std::cout << "Vous n'avez pas encore de score" << std::endl;
     }
     else
     {

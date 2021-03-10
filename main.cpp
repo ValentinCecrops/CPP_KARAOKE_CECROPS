@@ -46,9 +46,10 @@ int main()
         
         case 5:
             player.showLowScore();
+            break;
         
         case 6:
-            cout << "Quelle chanson voulez vous jouer ?";
+            cout << "Quelle chanson voulez vous jouer ?" << endl;
             cin >> songChoice;
             player.addScore(songChoice);
             break;
