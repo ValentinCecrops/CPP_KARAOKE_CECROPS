@@ -37,7 +37,7 @@ void Player::showAverageScore()
             songsPlayed += 1;
         }
     }
-    if(songsPlayed = 0)
+    if(songsPlayed == 0)
     {
         std::cout << "Vous n'avez pas encore de score" << std::endl;
     }
