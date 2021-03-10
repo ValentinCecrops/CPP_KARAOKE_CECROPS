@@ -25,35 +25,35 @@ Player::Player(std::string name) : _name(name) {}
 
 Player::Player() : _name("Défaut") {}
 
-void Player::showAverageScore(int * scores)
+void Player::showAverageScore()
 {
     int averageScore = 0;
     for(int i = 0 ; i < 5 ; i++)
     {
-        averageScore += scores[i];
+        averageScore += _songScore[i];
     }
     averageScore /= 5;
     std::cout << "Score moyen : " << averageScore << std::endl;
 }
 
-void Player::showTotalScore(int * scores)
+void Player::showTotalScore()
 {
     int totalScore = 0;
     for(int i = 0 ; i < 5 ; i++)
     {
-        totalScore += scores[i];
+        totalScore += _songScore[i];
     }
     std::cout << "Score total : " << totalScore << std::endl;
 }
 
-void Player::showHighScore(int * scores)
+void Player::showHighScore()
 {
     int highScore = 0;
     for(int i = 0 ; i < 5 ; i++)
     {
-        if(scores[i] > highScore)
+        if(_songScore[i] > highScore)
         {
-            highScore = scores[i];
+            highScore = _songScore[i];
         }
     }
     if(highScore = 0)
@@ -66,14 +66,14 @@ void Player::showHighScore(int * scores)
     }
 }
 
-void Player::showLowScore(int * scores)
+void Player::showLowScore()
 {
     int lowScore = 101;
     for(int i = 0 ; i < 5 ; i++)
     {
-        if(scores[i] < lowScore && scores[i] > 0)
+        if(_songScore[i] < lowScore && _songScore[i] > 0)
         {
-            lowScore = scores[i];
+            lowScore = _songScore[i];
         }
     }
     if(lowScore = 101)
@@ -86,17 +86,31 @@ void Player::showLowScore(int * scores)
     }
 }
 
-void Player::showScores(int * scores)
+void Player::showScores()
 {
     for(int i = 0 ; i < 5 ; i++)
     {
-        std::cout << "Chanson " << i << " : " << scores[i] << std::endl;
+        std::cout << "Chanson " << i << " : " << _songScore[i] << std::endl;
     }
 }
 
-int Player::addScore()
+void Player::addScore(int songNum)
 {
+    if(songNum < 0 || songNum > 4)
+    {
+        std::cout << "Nombre invalide" << std::endl;
+        return;
+    }
     srand(time(NULL));
-    int randomScore = rand() % 51 + 50;
-    return randomScore;
+    _score = rand() % 51 + 50;
+    std::cout << "Score de cette partie : " << _score << std::endl;
+    if(_score > _songScore[songNum])
+    {
+        _songScore[songNum] = _score;
+        std::cout << "Nouveau record !" << std::endl;
+    }
+    else
+    {
+        std::cout << "Record sur cette chanson : " << _songScore[songNum] << std::endl;
+    }
 }

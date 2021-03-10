@@ -4,15 +4,15 @@ class Player
 {
 private:
     std::string _name;
-    int _songScore[5];
+    int _songScore[5] = {0,0,0,0,0};
     int _score;
 public:
-    void showAverageScore(int * scores);
-    void showTotalScore(int * scores);
-    void showHighScore(int * scores);
-    void showLowScore(int * scores);
-    void showScores(int * scores);
-    int addScore();
+    void showAverageScore();
+    void showTotalScore();
+    void showHighScore();
+    void showLowScore();
+    void showScores();
+    void addScore(int songNum);
     Player(std::string name);
     Player();
 };
